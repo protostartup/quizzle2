@@ -1,1 +1,1 @@
-web: gunicorn --log-file - mysite.wsgi
+web: gunicorn --log-file - quizzle2.wsgi
