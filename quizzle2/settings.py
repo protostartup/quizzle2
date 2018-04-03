@@ -7,21 +7,27 @@ BASE_DIR = PACKAGE_ROOT
 
 DEBUG = True
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": "dev.db",
-#     }
-# }
 
-import dj_database_url
-DATABASES = {
-    "default": dj_database_url.config()
-}
+if os.environ.get("HEROKU"):
+
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.config()
+    }
+
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "dev.db",
+        }
+    }
 
 ALLOWED_HOSTS = [
     "*",
 ]
+
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
