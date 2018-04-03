@@ -150,6 +150,7 @@ INSTALLED_APPS = [
 
     # project
     "quizzle2",
+    "quizzes"
 ]
 
 ADMIN_URL = "admin:index"

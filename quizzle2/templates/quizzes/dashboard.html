@@ -1,0 +1,69 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}pinax-project-account{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+<main>
+    <section class="jumbotron">
+        <div class="container">
+            {% include "_messages.html" %}
+            <h1>{{ welcome_message }}</h1>
+        </div>
+    </section>
+    <section id="content-section">
+        <div id="content-body">
+            <h2>Try creating a quiz!</h2>
+            <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-quiz-modal">
+                Create Quiz
+            </button>
+        </div>
+    </section>
+
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="create-quiz-modal" tabindex="-1" role="dialog" aria-labelledby="create-quiz-modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create a Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="/" method="POST">
+            {% csrf_token %}
+      <div class="modal-body">
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <label class="form-check-label" for="defaultCheck2">
+                  checkbox2
+              </label>
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="submit" class="btn btn-info" value="Submit Button">
+
+
+      </div>
+            </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
