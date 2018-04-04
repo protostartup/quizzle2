@@ -42,12 +42,12 @@ def create_quiz(request):
 
         quiz_num_for_student = Quiz.objects.filter(student=request.user).count() + 1
 
-        Quiz.objects.create(student=request.user,
+        quiz = Quiz.objects.create(student=request.user,
                                num_questions=num_questions,
                                question_ids=json.dumps(question_on_quiz),
                                quiz_num_for_student=quiz_num_for_student)
 
-    return redirect(reverse("home"))
+    return redirect("quizzes:quiz-view", id=quiz.id)
 
 def quiz_question_view(request, quiz_id, question_id):
 

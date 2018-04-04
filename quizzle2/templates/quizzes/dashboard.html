@@ -17,14 +17,13 @@
     <section id="content-section">
         <div id="content-body">
 
-
-            {% if quizzes %}
             <br>
             <div class="text-center">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-quiz-modal">
                     Create New Quiz
                 </button>
             </div>
+            {% if quizzes %}
 
             <br><br>
             <h3>Your Quizzes</h3>
@@ -49,8 +48,6 @@
             </table>
                 {{ q }}
 
-            {% else %}
-                <h2>Try creating a quiz!</h2>
             {% endif %}
         </div>
     </section>
