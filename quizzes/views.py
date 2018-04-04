@@ -48,31 +48,51 @@ def create_quiz(request):
 
 def quiz_question_view(request, quiz_id, question_id):
 
-    quiz = get_object_or_404(Quiz, pk=quiz_id, student=request.user),
+    quiz = get_object_or_404(Quiz, pk=quiz_id, student=request.user)
     question = get_object_or_404(Question, pk=question_id)
 
-    # try:
-    #     question_response = QuestionResponse.get.create(
-    #         student=request.user,
-    #         question=question,
-    #     )
+    question_ids = json.loads(quiz.question_ids)
+    questions_dict = dict(zip(range(len(question_ids)), question_ids))
+    prev_question_id = questions_dict.get(question_ids.index(question_id) - 1)
+    next_question_id = questions_dict.get(question_ids.index(question_id) + 1)
+
+    context = {"quiz": quiz,
+               "prev_question_id": prev_question_id,
+               "next_question_id": next_question_id,
+               }
+
+    print(quiz)
+
+    try:
+        question_response = QuestionResponse.objects.get(
+            student=request.user,
+            question=question,
+            quiz=quiz,
+        )
+
+
+        context['question_response'] = question_response
+
+        return render(request, "quizzes/quiz_feedback.html", context)
+
+    except QuestionResponse.DoesNotExist:
+        pass
 
     if request.method == "POST":
         answer_id = request.POST.get("answer-chosen")
         choice = Choice.objects.get(id=answer_id)
         question_response = QuestionResponse.objects.create(
                                 student=request.user,
+                                quiz=quiz,
                                 question=question,
                                 choice=choice
                             )
-        context = {"question_response": question_response}
+        context['question_response'] = question_response
         return render(request, "quizzes/quiz_feedback.html", context)
 
-    context = {
-        "quiz": quiz,
-        "question": question,
-    }
+    # Request is GET and has not been seen before
 
+    context['question'] = question
     return render(request, "quizzes/quiz.html", context)
 
 def quiz_view(request, id):

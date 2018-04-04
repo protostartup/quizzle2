@@ -11,13 +11,12 @@
     <section class="jumbotron">
         <div class="container">
             {% include "_messages.html" %}
-            <h1>Quiz {{ quiz.quiz_num_for_student }}</h1>
+
+            <h1>{{ quiz }}</h1>
         </div>
     </section>
     <section id="content-section">
         <div id="content-body">
-            <h3 class="text-center">{{ question_response.question.question_text }}</h3>
-
             {% if question_response.choice.is_correct %}
                 <div class="alert alert-success" role="alert">
                   Correct! Good job!
@@ -30,11 +29,13 @@
 
             {% endif %}
 
+            <h3 class="text-center">{{ question_response.question.question_text }}</h3>
+
             <form>
                 {% for choice in question_response.question.choices.all %}
                 <br><br>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}"
+                  <input disabled class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}"
                          {% if choice.id == question_response.choice.id %}checked {% endif %}
                   >
                   <label class="form-check-label" for="{{ choice.id }}">
@@ -43,7 +44,11 @@
                 </div>
                 {% endfor %}
                 <br><br><br>
-                <button class="btn btn-secondary btn-lg float-right">Next Question -></button>
+                {% if next_question_id %}
+                    <a href="{% url "quizzes:quiz-question-view" quiz.id next_question_id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">Next Question -></a>
+                {% else %}
+                    <a href="" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
+                {% endif %}
                 <br><br><br>
             </form>
 
