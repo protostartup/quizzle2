@@ -8,14 +8,13 @@
 
 {% block body_base %}
 <main>
-    <section class="jumbotron">
-        <div class="container">
-            {% include "_messages.html" %}
-            <h1>Quiz {{ quiz.quiz_num_for_student }}</h1>
-        </div>
-    </section>
     <section id="content-section">
         <div id="content-body">
+
+
+            <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question.category }}</span></h1>
+
+            <br><br>
             <h3 class="text-center">{{ question.question_text }}</h3>
 
 

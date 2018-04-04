@@ -1,0 +1,55 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}pinax-project-account{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+<main>
+    <section class="jumbotron">
+        <div class="container">
+            {% include "_messages.html" %}
+            <h1>{{ quiz }} Results</h1>
+        </div>
+    </section>
+    <section id="content-section">
+        <div id="content-body">
+
+            <p><a href="{% url "quizzes:home" %}">< Quizzes</a></p>
+
+            <br>
+            <h1>Total Score: {{ total_score|floatformat:"0" }}%</h1>
+
+            <br><br>
+            <h3>Questions</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width: 5%" scope="col">#</th>
+                  <th style="width: 35%" scope="col">Question</th>
+                  <th style="width: 10%" scope="col">Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for qr in quiz.responses.all %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                    <!--<td><a href="{% url "quizzes:quiz-view" quiz.id %}">{{ q }}</a></td>-->
+                    <td><a href="{% url "quizzes:quiz-question-view" quiz.id qr.question.id %}">{{ qr.question.question_text }}</a></td>
+                  <td class="text-center" style="font-size: 200%;">{% if qr.choice.is_correct %}<i style="color: green;" class="fas fa-check"></i>{% else %}<i style="color: red;" class="fas fa-times"></i>{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+                {{ q }}
+
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

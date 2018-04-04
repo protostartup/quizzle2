@@ -8,15 +8,8 @@
 
 {% block body_base %}
 <main>
-    <section class="jumbotron">
-        <div class="container">
-            {% include "_messages.html" %}
-
-            <h1>{{ quiz }}</h1>
-        </div>
-    </section>
-    <section id="content-section">
         <div id="content-body">
+
             {% if question_response.choice.is_correct %}
                 <div class="alert alert-success" role="alert">
                   Correct! Good job!
@@ -28,6 +21,10 @@
                 </div>
 
             {% endif %}
+
+            <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question_response.question.category }}</span></h1>
+
+            <br><br>
 
             <h3 class="text-center">{{ question_response.question.question_text }}</h3>
 
@@ -47,7 +44,7 @@
                 {% if next_question_id %}
                     <a href="{% url "quizzes:quiz-question-view" quiz.id next_question_id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">Next Question -></a>
                 {% else %}
-                    <a href="" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
+                    <a href="{% url "quizzes:quiz-results-view" quiz.id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
                 {% endif %}
                 <br><br><br>
             </form>

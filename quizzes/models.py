@@ -65,6 +65,7 @@ class Quiz(models.Model):
     quiz_num_for_student = models.IntegerField()
     question_ids = models.TextField()
     num_questions = models.IntegerField()
+    complete = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -76,6 +77,6 @@ class Quiz(models.Model):
 class QuestionResponse(models.Model):
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="responses")
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice,  on_delete=models.CASCADE)

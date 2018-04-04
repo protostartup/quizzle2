@@ -30,8 +30,11 @@ def create_quiz(request):
         print(data)
         # print("Categories is {}".format(dict(data).get('categories')))
         questions = Question.objects.filter(category__pk__in=data['categories'])
-        num_questions = sample_size = int(data.get("num_questions")[0])
+        num_questions = int(data.get("num_questions")[0])
         print(list(questions))
+
+        sample_size = num_questions if num_questions < len(questions) else len(questions)
+        print(sample_size)
 
         question_on_quiz = [q.id for q in random.sample(list(questions), sample_size)]
 
@@ -102,6 +105,17 @@ def quiz_view(request, id):
     first_question_id = questions[0]
 
     return redirect("quizzes:quiz-question-view", quiz_id=id, question_id=first_question_id)
+
+
+def quiz_results(request, quiz_id):
+
+    quiz = get_object_or_404(Quiz, pk=quiz_id, student=request.user)
+
+    total_score = (len(quiz.responses.all().filter(choice__is_correct=True))/len(quiz.responses.all())) * 100
+
+    context = {"quiz": quiz,
+               "total_score": total_score}
+    return render(request, "quizzes/quiz_results.html", context)
 
 
 
