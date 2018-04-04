@@ -110,6 +110,8 @@ def quiz_view(request, id):
 def quiz_results(request, quiz_id):
 
     quiz = get_object_or_404(Quiz, pk=quiz_id, student=request.user)
+    quiz.complete = True
+    quiz.save()
 
     total_score = (len(quiz.responses.all().filter(choice__is_correct=True))/len(quiz.responses.all())) * 100
 
