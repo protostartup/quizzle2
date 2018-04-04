@@ -8,8 +8,8 @@ from django.contrib import admin
 
 
 urlpatterns = [
-    path("", include("quizzes.urls"), name="quizzes"),
-    # path("", TemplateView.as_view(template_name="homepage.html"), name="home"),
+    path("", include("quizzes.urls", namespace="quizzes")),
+    path("", TemplateView.as_view(template_name="homepage.html"), name="home"),
     path("admin/", admin.site.urls),
     path("account/", include("account.urls")),
 ]

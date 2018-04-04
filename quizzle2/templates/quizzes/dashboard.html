@@ -16,11 +16,42 @@
     </section>
     <section id="content-section">
         <div id="content-body">
-            <h2>Try creating a quiz!</h2>
+
+
+            {% if quizzes %}
             <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-quiz-modal">
-                Create Quiz
-            </button>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-quiz-modal">
+                    Create New Quiz
+                </button>
+            </div>
+
+            <br><br>
+            <h3>Your Quizzes</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width: 5%" scope="col">#</th>
+                  <th style="width: 25%" scope="col">Quiz</th>
+                  <th style="width: 15%" scope="col">Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for q in quizzes %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{% url "quizzes:quiz-view" q.id %}">{{ q }}</a></td>
+                  <td>{{ q.created }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+                {{ q }}
+
+            {% else %}
+                <h2>Try creating a quiz!</h2>
+            {% endif %}
         </div>
     </section>
 
@@ -36,28 +67,36 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="/" method="POST">
+        <form action="{% url "quizzes:create-quiz" %}" method="POST">
             {% csrf_token %}
       <div class="modal-body">
+            <p>What categories would you like to include?</p>
+            {% for cat in categories %}
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="categories" value="{{ cat.id }}" id="{{ cat.id }}">
+              <label class="form-check-label" for="{{ cat.id }}">
+                {{ cat.name }}
+              </label>
+            </div>
+            {% endfor %}
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-              <label class="form-check-label" for="defaultCheck2">
-                  checkbox2
-              </label>
-            </div>
+            <br>
+            <div class="form-group">
+                <label for="num_questions">How many questions should it have?</label>
+                <select name="num_questions" class="form-control" id="num_questions">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                </select>
+              </div>
+
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <input type="submit" class="btn btn-info" value="Submit Button">
+        <input type="submit" class="btn btn-primary" value="Submit">
 
 
       </div>

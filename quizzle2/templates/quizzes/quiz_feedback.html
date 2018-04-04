@@ -1,0 +1,43 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}pinax-project-account{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+<main>
+    <section class="jumbotron">
+        <div class="container">
+            {% include "_messages.html" %}
+            <h1>Quiz {{ quiz.quiz_num_for_student }}</h1>
+        </div>
+    </section>
+    <section id="content-section">
+        <div id="content-body">
+            <h3 class="text-center">{{ question.question_text }}</h3>
+
+
+            <form>
+                {% for choice in question.choices.all %}
+                <br><br>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}" checked>
+                  <label class="form-check-label" for="{{ choice.id }}">
+                    {{ choice.choice_text }}
+                  </label>
+                </div>
+                {% endfor %}
+                <br><br><br>
+                <input type="submit" class="btn btn-secondary btn-lg float-right" value="Next Question">
+                <br><br><br>
+            </form>
+
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
+import itertools
 from django.contrib.auth.models import User
 
 
 class Category(models.Model):
     """Categories that questions can be in"""
     name = models.CharField(max_length=200, unique=True)
+    active = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -22,6 +24,7 @@ class Question(models.Model):
     question_text = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, null=True)
     category = models.ForeignKey(Category, related_name='questions', on_delete=models.CASCADE)
+    active = models.BooleanField(default=False)
     # Access all choices through related_name "choices"
 
     def save(self, *args, **kwargs):
@@ -35,6 +38,11 @@ class Question(models.Model):
 
                 # Truncate the original slug dynamically. Minus 1 for the hyphen.
                 self.slug = "%s-%d" % (orig[:max_length - len(str(x)) - 1], x)
+
+        return super(Question, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.question_text
 
 
 class Choice(models.Model):
@@ -61,9 +69,12 @@ class Quiz(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "Quiz {}".format(self.quiz_num_for_student)
+
 
 class QuestionResponse(models.Model):
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    is_correct = models.BooleanField()
+    choice = models.ForeignKey(Choice,  on_delete=models.CASCADE)
