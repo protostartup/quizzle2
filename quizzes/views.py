@@ -48,18 +48,29 @@ def create_quiz(request):
 
 def quiz_question_view(request, quiz_id, question_id):
 
+    quiz = get_object_or_404(Quiz, pk=quiz_id, student=request.user),
+    question = get_object_or_404(Question, pk=question_id)
+
+    # try:
+    #     question_response = QuestionResponse.get.create(
+    #         student=request.user,
+    #         question=question,
+    #     )
+
     if request.method == "POST":
         answer_id = request.POST.get("answer-chosen")
         choice = Choice.objects.get(id=answer_id)
-        # question_response = QuestionResponse.objects.create(
-        #                         student=request.user,
-        #                         question=question_id,
-        #                         is_correct=
-        #                     )
+        question_response = QuestionResponse.objects.create(
+                                student=request.user,
+                                question=question,
+                                choice=choice
+                            )
+        context = {"question_response": question_response}
+        return render(request, "quizzes/quiz_feedback.html", context)
 
     context = {
-        "quiz": get_object_or_404(Quiz, pk=quiz_id, student=request.user),
-        "question": get_object_or_404(Question, pk=question_id)
+        "quiz": quiz,
+        "question": question,
     }
 
     return render(request, "quizzes/quiz.html", context)

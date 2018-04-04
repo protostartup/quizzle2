@@ -16,21 +16,34 @@
     </section>
     <section id="content-section">
         <div id="content-body">
-            <h3 class="text-center">{{ question.question_text }}</h3>
+            <h3 class="text-center">{{ question_response.question.question_text }}</h3>
 
+            {% if question_response.choice.is_correct %}
+                <div class="alert alert-success" role="alert">
+                  Correct! Good job!
+                </div>
+
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                  It looks like your answer is wrong!
+                </div>
+
+            {% endif %}
 
             <form>
-                {% for choice in question.choices.all %}
+                {% for choice in question_response.question.choices.all %}
                 <br><br>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}" checked>
+                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}"
+                         {% if choice.id == question_response.choice.id %}checked {% endif %}
+                  >
                   <label class="form-check-label" for="{{ choice.id }}">
                     {{ choice.choice_text }}
                   </label>
                 </div>
                 {% endfor %}
                 <br><br><br>
-                <input type="submit" class="btn btn-secondary btn-lg float-right" value="Next Question">
+                <button class="btn btn-secondary btn-lg float-right">Next Question -></button>
                 <br><br><br>
             </form>
 

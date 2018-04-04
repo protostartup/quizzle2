@@ -76,5 +76,6 @@ class Quiz(models.Model):
 class QuestionResponse(models.Model):
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice,  on_delete=models.CASCADE)
