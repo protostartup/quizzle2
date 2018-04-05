@@ -9,6 +9,7 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
     list_display = ['__str__', 'category', 'active']
     list_editable = ['active']
+    search_fields = ['question_text']
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Category)
