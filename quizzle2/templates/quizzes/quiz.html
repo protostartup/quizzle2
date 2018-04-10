@@ -23,7 +23,7 @@
                 {% for choice in question.choices.all %}
                 <br><br>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}" checked>
+                  <input class="form-check-input" type="radio" name="answer-chosen" id="{{ choice.id }}" value="{{ choice.id }}">
                   <label class="form-check-label" for="{{ choice.id }}">
                     {{ choice.choice_text }}
                   </label>
