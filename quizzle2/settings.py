@@ -194,7 +194,7 @@ FIXTURE_DIRS = [
 SERVER_EMAIL = 'Quizzle Errors <errors@quizzle-unc.com>'
 
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "SENDGRID_API_KEY")
+# SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "SENDGRID_API_KEY")
 
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_HOST_USER = os.environ.get("SENDGRID_USERNAME", "sendgrid_username")
