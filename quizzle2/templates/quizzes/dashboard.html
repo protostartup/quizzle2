@@ -15,6 +15,7 @@
         </div>
     </section>
     <section id="content-section">
+
         <div id="content-body">
 
             <br>
@@ -33,7 +34,9 @@
                 <tr>
                   <th style="width: 5%" scope="col">#</th>
                   <th style="width: 25%" scope="col">Quiz</th>
+                  <th style="width: 15%" scope="col"># Questions</th>
                   <th style="width: 15%" scope="col">Created</th>
+                  <th style="width: 15%" scope="col">Results</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,7 +44,9 @@
                 <tr>
                   <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{% url "quizzes:quiz-view" q.id %}">{{ q }}</a></td>
-                  <td>{{ q.created }}</td>
+                    <td>{{ q.num_questions }}</td>
+                    <td>{{ q.created }}</td>
+                    <td><a href="{% url "quizzes:quiz-results-view" q.id %}">Results</a></td>
                 </tr>
                 {% endfor %}
               </tbody>

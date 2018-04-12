@@ -3,3 +3,5 @@
 
 django-toolbelt
 
+# For email support
+sendgrid-django

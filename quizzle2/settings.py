@@ -189,7 +189,21 @@ FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
 ]
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+SERVER_EMAIL = 'Quizzle Errors <errors@quizzle-unc.com>'
+
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "SENDGRID_API_KEY")
+
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = os.environ.get("SENDGRID_USERNAME", "sendgrid_username")
+EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_PASSWORD", "sendgrid_password")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+THEME_CONTACT_EMAIL = "support@quizzle-unc.com"
+DEFAULT_FROM_EMAIL = "Quizzle <sign-up@quizzle-unc.com>"
 
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_EMAIL_UNIQUE = True

@@ -13,6 +13,6 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Category)
-admin.site.register(Quiz)
-admin.site.register(Choice)
-admin.site.register(QuestionResponse)
+# admin.site.register(Quiz)
+# admin.site.register(Choice)
+# admin.site.register(QuestionResponse)

@@ -9,7 +9,7 @@
 {% block body_base %}
 <main>
         <div id="content-body">
-
+            <p><a href="{% url "quizzes:home" %}">< Back to Quizzes</a></p>
             {% if question_response.choice.is_correct %}
                 <div class="alert alert-success" role="alert">
                   Correct! Good job!
