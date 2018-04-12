@@ -8,6 +8,8 @@ class Category(models.Model):
     """Categories that questions can be in"""
     name = models.CharField(max_length=200, unique=True)
     active = models.BooleanField(default=False)
+    description = models.TextField(default="Description for Category")
+
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -17,6 +19,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def active_questions(self):
+        return self.questions.filter(active=True).count()
 
 
 class Question(models.Model):
@@ -50,6 +55,7 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     description = models.CharField(max_length=200, blank=True, null=True)
     is_correct = models.BooleanField()
+    order = models.PositiveSmallIntegerField(null=True, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -66,12 +72,18 @@ class Quiz(models.Model):
     question_ids = models.TextField()
     num_questions = models.IntegerField()
     complete = models.BooleanField(default=False)
+    final_score = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=5)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural = 'Quizzes'
+
     def __str__(self):
         return "Quiz {}".format(self.quiz_num_for_student)
+
+
 
 
 class QuestionResponse(models.Model):

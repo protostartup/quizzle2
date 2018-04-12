@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a60ea3a-aa4c-4ad8-bb3a-f96f08ef6adc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/quizzes/migrations/0006_auto_20180412_1919.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/models.py" afterPath="$PROJECT_DIR$/quizzes/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/urls.py" afterPath="$PROJECT_DIR$/quizzes/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/views.py" afterPath="$PROJECT_DIR$/quizzes/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/quizzes/dashboard.html" afterPath="$PROJECT_DIR$/quizzle2/templates/quizzes/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html" afterPath="$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +37,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quizzes/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="17" />
+            <state relative-caret-position="344">
+              <caret line="23" column="57" lean-forward="false" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -70,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/quizzes/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -106,8 +106,8 @@
       <file leaf-file-name="categories.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+            <state relative-caret-position="375">
+              <caret line="25" column="68" lean-forward="false" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -176,7 +176,6 @@
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/quizzle2/urls.py" />
-        <option value="$PROJECT_DIR$/quizzes/models.py" />
         <option value="$PROJECT_DIR$/quizzle2/templates/_footer.html" />
         <option value="$PROJECT_DIR$/quizzle2/templates/homepage.html" />
         <option value="$PROJECT_DIR$/quizzle2/templates/quizzes/quiz_results.html" />
@@ -186,9 +185,10 @@
         <option value="$PROJECT_DIR$/quizzle2/templates/quizzes/quiz.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/quizzle2/settings.py" />
-        <option value="$PROJECT_DIR$/quizzes/urls.py" />
         <option value="$PROJECT_DIR$/quizzes/views.py" />
         <option value="$PROJECT_DIR$/quizzle2/templates/quizzes/dashboard.html" />
+        <option value="$PROJECT_DIR$/quizzes/models.py" />
+        <option value="$PROJECT_DIR$/quizzes/urls.py" />
         <option value="$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html" />
       </list>
     </option>
@@ -227,6 +227,12 @@
               <item name="quizzle2" type="b2602c69:ProjectViewProjectNode" />
               <item name="quizzle2" type="462c0819:PsiDirectoryNode" />
               <item name="quizzes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quizzle2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quizzle2" type="462c0819:PsiDirectoryNode" />
+              <item name="quizzes" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quizzle2" type="b2602c69:ProjectViewProjectNode" />
@@ -693,16 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quizzes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -742,14 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quizzes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quizzes/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -781,10 +769,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/quizzes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="23" column="57" lean-forward="false" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quizzes/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/quizzle2/templates/quizzes/categories.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="375">
+          <caret line="25" column="68" lean-forward="false" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
           <folding />
         </state>
       </provider>

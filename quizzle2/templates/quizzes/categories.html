@@ -18,12 +18,16 @@
             <div class="card-columns">
             {% for cat in categories %}
 
-            <div class="card p-1">
+            <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{ cat }}</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
+                <p class="card-text">{{ cat.description }}</p>
+                  <a href="#" class="btn btn-secondary"><i class="far fa-star"></i></a>&nbsp&nbsp
+                  <a href="#" class="btn btn-primary">View Questions</a>
               </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{ cat.active_questions }} Questions Available</small>
+                </div>
             </div>
             {% endfor %}
             </div>
