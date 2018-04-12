@@ -27,6 +27,7 @@ class Category(models.Model):
 class Question(models.Model):
 
     question_text = models.CharField(max_length=200)
+    title = models.CharField(max_length=120, null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, null=True)
     category = models.ForeignKey(Category, related_name='questions', on_delete=models.CASCADE)
     active = models.BooleanField(default=False)
