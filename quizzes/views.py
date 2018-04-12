@@ -120,4 +120,12 @@ def quiz_results(request, quiz_id):
     return render(request, "quizzes/quiz_results.html", context)
 
 
+def categories_view(request):
+
+    categories = Category.objects.filter(active=True)
+    context = {"categories": categories}
+
+    return render(request, "quizzes/categories.html", context)
+
+
 

@@ -19,10 +19,21 @@
         <div id="content-body">
 
             <br>
-            <div class="text-center">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-quiz-modal">
-                    Create New Quiz
-                </button>
+            <div class="row">
+                <div class="col-md-4 offset-md-2">
+                    <div class="text-center">
+                        <a href="{% url "quizzes:categories" %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">Check Out Categories</a>
+                    </div>
+                </div>
+                <br><br>
+
+            <div class="col-md-4">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-quiz-modal">
+                        Create New Quiz
+                    </button>
+                </div>
+            </div>
             </div>
             {% if quizzes %}
 
