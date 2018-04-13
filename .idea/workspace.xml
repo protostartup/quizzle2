@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a60ea3a-aa4c-4ad8-bb3a-f96f08ef6adc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/quizzes/migrations/0011_questionstatus.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/quizzes/migrations/0012_auto_20180413_0818.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/quizzes/migrations/0013_auto_20180413_0822.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/models.py" afterPath="$PROJECT_DIR$/quizzes/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/urls.py" afterPath="$PROJECT_DIR$/quizzes/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzes/views.py" afterPath="$PROJECT_DIR$/quizzes/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/settings.py" afterPath="$PROJECT_DIR$/quizzle2/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/_account_bar.html" afterPath="$PROJECT_DIR$/quizzle2/templates/_account_bar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/homepage.html" afterPath="$PROJECT_DIR$/quizzle2/templates/homepage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/quizzes/question_detail.html" afterPath="$PROJECT_DIR$/quizzle2/templates/quizzes/question_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quizzle2/templates/quizzes/question_feedback.html" afterPath="$PROJECT_DIR$/quizzle2/templates/quizzes/question_feedback.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -128,8 +117,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quizzle2/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="212" column="42" lean-forward="false" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
+            <state relative-caret-position="417">
+              <caret line="221" column="4" lean-forward="false" selection-start-line="221" selection-start-column="4" selection-end-line="221" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -734,8 +723,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quizzle2/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="212" column="42" lean-forward="false" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
+        <state relative-caret-position="417">
+          <caret line="221" column="4" lean-forward="false" selection-start-line="221" selection-start-column="4" selection-end-line="221" selection-end-column="4" />
           <folding />
         </state>
       </provider>

@@ -219,6 +219,7 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTO_LOGIN = True
 
 AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 INTERNAL_IPS = [
