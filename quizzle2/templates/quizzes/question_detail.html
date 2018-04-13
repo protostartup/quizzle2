@@ -11,8 +11,15 @@
     <section id="content-section">
         <div id="content-body">
 
-            <p><a href="{% url "quizzes:home" %}">< Back to Quizzes</a></p>
-            <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question.category }}</span></h1>
+            {% if quiz %}
+                <p><a href="{% url "quizzes:home" %}">< Back to Quizzes</a></p>
+                <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question.category }}</span></h1>
+
+            {% else %}
+
+                <p><a href="{% url "quizzes:category-detail-view" question.category.slug %}">< Back to {{ question.category }} </a></p>
+
+            {% endif %}
 
             <br><br>
             <h3 class="text-center">{{ question.question_text }}</h3>
@@ -30,7 +37,7 @@
                 </div>
                 {% endfor %}
                 <br><br><br>
-                <input type="submit" class="btn btn-primary btn-lg float-right" value="Submit">
+                <input type="submit" class="btn btn-primary btn-lg" value="Submit">
                 <br><br><br>
             </form>
 

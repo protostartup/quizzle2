@@ -1,0 +1,53 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Quizzle 2{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+<main>
+    <section id="content-section">
+        <div id="content-body">
+
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url "quizzes:home" %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url "quizzes:categories" %}">Categories</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
+              </ol>
+            </nav>
+            <br><br>
+            <h3>{{ category }} Questions</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width: 5%" scope="col">#</th>
+                  <th style="width: 35%" scope="col">Name</th>
+                  <th style="width: 10%" scope="col">Has attempted?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for q in personal_questions %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{% url "quizzes:question-detail-view" q.slug %}">{{ q }}</a></td>
+                  <td class="text-center" style="font-size: 200%;">
+                      {{ q.has_attempted }}
+                      {% if q.has_attempted %}Yes{% else %}No{% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+                {{ q }}
+
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

@@ -22,11 +22,11 @@
               <div class="card-body">
                 <h5 class="card-title">{{ cat }}</h5>
                 <p class="card-text">{{ cat.description }}</p>
-                  <a href="#" class="btn btn-secondary"><i class="far fa-star"></i></a>&nbsp&nbsp
-                  <a href="#" class="btn btn-primary">View Questions</a>
+                  <!--<a href="#" class="btn btn-secondary"><i class="far fa-star"></i></a>&nbsp&nbsp-->
+                  <a href="{% url "quizzes:category-detail-view" cat.slug %}" class="btn btn-primary">View Questions</a>
               </div>
                 <div class="card-footer">
-                  <small class="text-muted">{{ cat.active_questions }} Questions Available</small>
+                  <small class="text-muted">{{ cat.active_questions.count }} Questions Available</small>
                 </div>
             </div>
             {% endfor %}

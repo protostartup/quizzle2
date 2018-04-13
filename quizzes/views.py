@@ -76,7 +76,7 @@ def quiz_question_view(request, quiz_id, question_id):
 
         context['question_response'] = question_response
 
-        return render(request, "quizzes/quiz_feedback.html", context)
+        return render(request, "quizzes/question_feedback.html", context)
 
     except QuestionResponse.DoesNotExist:
         pass
@@ -91,12 +91,12 @@ def quiz_question_view(request, quiz_id, question_id):
                                 choice=choice
                             )
         context['question_response'] = question_response
-        return render(request, "quizzes/quiz_feedback.html", context)
+        return render(request, "quizzes/question_feedback.html", context)
 
     # Request is GET and has not been seen before
 
     context['question'] = question
-    return render(request, "quizzes/quiz.html", context)
+    return render(request, "quizzes/question_detail.html", context)
 
 def quiz_view(request, id):
 
@@ -126,6 +126,52 @@ def categories_view(request):
     context = {"categories": categories}
 
     return render(request, "quizzes/categories.html", context)
+
+
+def category_detail_view(request, slug):
+
+    category = get_object_or_404(Category, slug=slug)
+    questions = category.active_questions()
+
+    for q in questions:
+        has_attempted = QuestionResponse.objects.filter(question=q, quiz=None).exists()
+        q.has_attempted = has_attempted
+
+
+    context = {"category": category, "personal_questions": questions}
+
+    return render(request, "quizzes/category_detail.html", context)
+
+
+def question_detail_view(request, slug):
+
+
+    question = get_object_or_404(Question, slug=slug)
+    context = {"question": question}
+
+    if request.method == "POST":
+        answer_id = request.POST.get("answer-chosen")
+        choice = Choice.objects.get(id=answer_id)
+        question_response = QuestionResponse.objects.create(
+            student=request.user,
+            quiz=None,
+            question=question,
+            choice=choice
+        )
+        context['question_response'] = question_response
+        return render(request, "quizzes/question_feedback.html", context)
+
+
+    question_response = QuestionResponse.objects.filter(student=request.user, question=question, quiz=None).first()
+    if question_response:
+        context['question_response'] = question_response
+        print("Found question response {}".format(question_response))
+        return render(request, "quizzes/question_feedback.html", context)
+
+
+
+
+    return render(request, "quizzes/question_detail.html", context)
 
 
 

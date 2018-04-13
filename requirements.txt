@@ -1,6 +1,7 @@
 -r requirements-zero.txt
 -r requirements-account.txt
 
+django-debug-toolbar
 django-toolbelt
 
 # For email support

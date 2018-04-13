@@ -9,7 +9,7 @@
 {% block body_base %}
 <main>
         <div id="content-body">
-            <p><a href="{% url "quizzes:home" %}">< Back to Quizzes</a></p>
+            {% if quiz %}<p><a href="{% url "quizzes:home" %}">< Back to Quizzes</a></p>{% endif %}
             {% if question_response.choice.is_correct %}
                 <div class="alert alert-success" role="alert">
                   Correct! Good job!
@@ -22,10 +22,16 @@
 
             {% endif %}
 
-            <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question_response.question.category }}</span></h1>
+            {% if quiz %}
+                <h1>{{ quiz }}<span class="badge badge-secondary float-right">{{ question_response.question.category }}</span></h1>
+
+            {% else %}
+
+                <p><a href="{% url "quizzes:category-detail-view" question.category.slug %}">< Back to {{ question.category }} </a></p>
+
+            {% endif %}
 
             <br><br>
-
             <h3 class="text-center">{{ question_response.question.question_text }}</h3>
 
             <form>
@@ -41,10 +47,12 @@
                 </div>
                 {% endfor %}
                 <br><br><br>
-                {% if next_question_id %}
-                    <a href="{% url "quizzes:quiz-question-view" quiz.id next_question_id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">Next Question -></a>
-                {% else %}
-                    <a href="{% url "quizzes:quiz-results-view" quiz.id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
+                {% if quiz %}
+                    {% if next_question_id %}
+                        <a href="{% url "quizzes:quiz-question-view" quiz.id next_question_id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">Next Question -></a>
+                    {% else %}
+                        <a href="{% url "quizzes:quiz-results-view" quiz.id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
+                    {% endif %}
                 {% endif %}
                 <br><br><br>
             </form>
