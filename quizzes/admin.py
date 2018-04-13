@@ -11,8 +11,16 @@ class QuestionAdmin(admin.ModelAdmin):
     list_editable = ['active']
     search_fields = ['question_text']
 
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    readonly_fields = ['slug']
+    list_display = ['__str__', 'active']
+    list_editable = ['active']
+    search_fields = ['name']
+
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 # admin.site.register(Quiz)
 # admin.site.register(Choice)
 # admin.site.register(QuestionResponse)
