@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Category, Question, Quiz, QuestionResponse, Choice
+from .models import Category, Question, Quiz, QuestionResponse, QuestionStatus, Choice
 from django.shortcuts import get_object_or_404
 import random
 import json
@@ -147,7 +147,10 @@ def question_detail_view(request, slug):
 
 
     question = get_object_or_404(Question, slug=slug)
-    context = {"question": question}
+    question_status, _created = QuestionStatus.objects.get_or_create(question=question, student=request.user, quiz=None)
+
+    context = {"question": question,
+               "question_status": question_status}
 
     if request.method == "POST":
         answer_id = request.POST.get("answer-chosen")
@@ -158,20 +161,26 @@ def question_detail_view(request, slug):
             question=question,
             choice=choice
         )
+
+        question_status.has_attempted = True
+        question_status.save()
         context['question_response'] = question_response
         return render(request, "quizzes/question_feedback.html", context)
 
-
-    question_response = QuestionResponse.objects.filter(student=request.user, question=question, quiz=None).first()
-    if question_response:
+    if question_status.feedback_view:
+        question_response = QuestionResponse.objects.filter(student=request.user, question=question, quiz=None).first()
         context['question_response'] = question_response
         print("Found question response {}".format(question_response))
         return render(request, "quizzes/question_feedback.html", context)
 
-
-
-
+    print(context)
     return render(request, "quizzes/question_detail.html", context)
 
 
+def try_again_view(request, question_id):
 
+
+    question = Question.objects.get(pk=question_id)
+    question_status = QuestionStatus.objects.get(student=request.user, question=question, quiz=None)
+    question_status.feedback_view = False
+    return redirect("quizzes:question-detail-view", slug=question.slug)

@@ -111,3 +111,16 @@ class QuestionResponse(models.Model):
     attempt_number = models.PositiveSmallIntegerField(blank=True, null=True)
 
     # Note attempt number is the number of attempts on this quiz or in free form
+
+
+class QuestionStatus(models.Model):
+
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    feedback_view = models.BooleanField(default=False)
+    has_attempted = models.BooleanField(default=False)
+
+
+    class Meta:
+        unique_together = (("student", "question", "quiz"),)

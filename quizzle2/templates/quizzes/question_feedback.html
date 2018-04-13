@@ -46,6 +46,8 @@
                   </label>
                 </div>
                 {% endfor %}
+
+            </form>
                 <br><br><br>
                 {% if quiz %}
                     {% if next_question_id %}
@@ -53,9 +55,15 @@
                     {% else %}
                         <a href="{% url "quizzes:quiz-results-view" quiz.id %}" class="btn btn-secondary btn-lg active float-right" role="button" aria-pressed="true">View Final Results</a>
                     {% endif %}
+
+                {% else %}
+                    <form action="{% url "quizzes:try-again-view" question_response.question.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Try Again</button>
+                    </form>
                 {% endif %}
                 <br><br><br>
-            </form>
+
 
         </div>
     </section>

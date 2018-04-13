@@ -37,6 +37,9 @@
                 </div>
                 {% endfor %}
                 <br><br><br>
+                {% if question_status.has_attempted %}
+                <!--<input type="submit" class="btn btn-secondary btn-lg" value="View Previous Attempts">-->
+                {% endif %}
                 <input type="submit" class="btn btn-primary btn-lg" value="Submit">
                 <br><br><br>
             </form>
