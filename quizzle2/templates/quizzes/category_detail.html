@@ -35,7 +35,6 @@
                   <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{% url "quizzes:question-detail-view" q.slug %}">{{ q }}</a></td>
                   <td class="text-center" style="font-size: 200%;">
-                      {{ q.has_attempted }}
                       {% if q.has_attempted %}Yes{% else %}No{% endif %}
                   </td>
                 </tr>
