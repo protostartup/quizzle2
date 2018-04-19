@@ -57,7 +57,7 @@
                     <td><a href="{% url "quizzes:quiz-view" q.id %}">{{ q }}</a></td>
                     <td>{{ q.num_questions }}</td>
                     <td>{{ q.created }}</td>
-                    <td><a href="{% url "quizzes:quiz-results-view" q.id %}">Results</a></td>
+                    <td>{% if q.complete %}<a href="{% url "quizzes:quiz-view" q.id %}">Results</a>{% else %}<a href="{% url "quizzes:quiz-view" q.id %}">Continue{% endif%}</td>
                 </tr>
                 {% endfor %}
               </tbody>

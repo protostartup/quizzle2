@@ -127,6 +127,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware'
 ]
 
+
+
 ROOT_URLCONF = "quizzle2.urls"
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -227,7 +229,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SSECUREECURE = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+if os.environ.get("HEROKU"):
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SSECUREECURE = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    DEBUG = False
