@@ -7,16 +7,16 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
     inlines = [ChoiceInline]
-    list_display = ['__str__', 'category', 'active']
-    list_editable = ['active']
+    list_display = ['__str__', 'category', 'published']
+    list_editable = ['published']
     search_fields = ['question_text']
 
 
 
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
-    list_display = ['__str__', 'active']
-    list_editable = ['active']
+    list_display = ['__str__', 'published']
+    list_editable = ['published']
     search_fields = ['name']
 
 admin.site.register(Question, QuestionAdmin)

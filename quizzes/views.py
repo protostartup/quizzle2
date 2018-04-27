@@ -13,7 +13,7 @@ def home_view(request):
 
     context = {
         "welcome_message": "Hello, and welcome {}!".format(user),
-        "categories": [{"name": cat.name, "id": cat.id} for cat in Category.objects.filter(active=True)],
+        "categories": [{"name": cat.name, "id": cat.id} for cat in Category.objects.filter(published=True)],
         "quizzes": Quiz.objects.filter(student=request.user),
     }
 

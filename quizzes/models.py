@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     """Categories that questions can be in"""
     name = models.CharField(max_length=200, unique=True)
-    active = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
     description = models.TextField(default="Description for Category")
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 
@@ -22,7 +22,7 @@ class Category(models.Model):
         return self.name
 
     def active_questions(self):
-        return self.questions.filter(active=True)
+        return self.questions.filter(published=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -45,7 +45,8 @@ class Question(models.Model):
     title = models.CharField(max_length=120, null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, null=True)
     category = models.ForeignKey(Category, related_name='questions', on_delete=models.CASCADE)
-    active = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
+    save_for_exam = models.BooleanField(default=False)
     # Access all choices through related_name "choices"
 
     def save(self, *args, **kwargs):
