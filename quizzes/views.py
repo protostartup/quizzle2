@@ -122,7 +122,7 @@ def quiz_results(request, quiz_id):
 
 def categories_view(request):
 
-    categories = Category.objects.filter(active=True)
+    categories = Category.objects.filter(published=True)
     context = {"categories": categories}
 
     return render(request, "quizzes/categories.html", context)
