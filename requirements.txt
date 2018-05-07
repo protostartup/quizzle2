@@ -6,3 +6,6 @@ django-toolbelt
 
 # For email support
 sendgrid-django
+
+# For testing
+beautifulsoup4
